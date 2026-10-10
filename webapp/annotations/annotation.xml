@@ -1,18 +1,119 @@
-<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+<?xml version='1.0' encoding='utf-8'?>
+<edmx:Edmx xmlns="http://docs.oasis-open.org/odata/ns/edm" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
-        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
     </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
-        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
     </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
-        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
     </edmx:Reference>
     <edmx:Reference Uri="/sap/opu/odata4/sap/zui_pc_sim_o4/srvd/sap/zui_pc_sim_o4/0001/$metadata">
-        <edmx:Include Namespace="com.sap.gateway.srvd.zui_pc_sim.v0001" Alias="SAP__self"/>
+        <edmx:Include Namespace="com.sap.gateway.srvd.zui_pc_sim.v0001" Alias="SAP__self" />
     </edmx:Reference>
     <edmx:DataServices>
-        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+        <Schema Namespace="local">
+            <Annotations Target="SAP__self.RunsType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Offset voucher（冲销）" />
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.OffsetVoucher" />
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet" />
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Posting voucher（创建）" />
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Posting" />
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CompanyCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalYear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalPeriod" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="WBS" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="GLAccount" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalAmount" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DebitCreditCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CarryType" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ReceiverAccount" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TransferAccount" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Criticality" Path="Criticality" />
+                            <PropertyValue Property="Value" Path="Status" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Message" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="过账凭证号" />
+                            <PropertyValue Property="Value" Path="AccountingDocument" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="过账日期" />
+                            <PropertyValue Property="Value" Path="PostingDate" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)">
+                <Annotation Term="Common.SideEffects">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath>_it</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/PostingDate">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/DocumentDate">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/AccountingDocumentType">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+                <Annotation Term="UI.ParameterDefaultValue" String="SA" />
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)">
+                <Annotation Term="Common.SideEffects">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath>_it</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)/PostingDate">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)/ReversalReason">
+                <Annotation Term="UI.Hidden" Bool="true" />
+                <Annotation Term="UI.ParameterDefaultValue" String="01" />
+            </Annotations>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>
