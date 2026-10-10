@@ -4,7 +4,7 @@
 
 ### 客户版本功能同步（2026-10-10，0.0.2）
 
-已迁移 project1 提交 f9597a6 的前端功能，保留 projectcarryover 应用命名空间、应用标题、Launchpad 入口、客户服务元数据及四个 UI5 YAML 配置。
+ 保留 projectcarryover 应用命名空间、应用标题、Launchpad 入口、客户服务元数据及四个 UI5 YAML 配置。
 
 - Simulate voucher（模拟）：按公司、年度、期间、分类账、WBS 和币种去重；弹窗展示后端直接返回的分录及借贷合计，关闭后不保存模拟历史，不显示来源科目列。
 - Posting voucher（创建）：调用客户 RAP Posting 动作，显示过账凭证号、过账日期并刷新数据；默认凭证类型 SA。
