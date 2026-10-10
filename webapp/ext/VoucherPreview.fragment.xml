@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog title="{i18n>previewTitle}" contentWidth="85rem" contentHeight="38rem" resizable="true" draggable="true">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <MessageStrip text="{i18n>previewScope}" type="Information" showIcon="true"/>
+                <VBox items="{preview>/Results}">
+                    <items>
+                        <VBox class="sapUiSmallMarginTop">
+                            <Title text="{preview>CompanyCode} / {preview>FiscalYear} / {preview>FiscalPeriod} / {preview>WBS}"/>
+                            <MessageStrip text="{preview>Message}" type="{preview>MessageType}" showIcon="true"/>
+                            <Table items="{preview>Lines}" noDataText="{i18n>previewEmpty}" sticky="ColumnHeaders">
+                                <columns>
+                                    <Column><Text text="{i18n>previewAccount}"/></Column>
+                                    <Column><Text text="{i18n>previewDC}"/></Column>
+                                    <Column hAlign="End"><Text text="{i18n>previewAmount}"/></Column>
+                                    <Column><Text text="{i18n>previewSourceWBS}"/></Column>
+                                    <Column><Text text="{i18n>previewAccountWBS}"/></Column>
+                                    <Column><Text text="{i18n>previewManagementWBS}"/></Column>
+                                    <Column><Text text="{i18n>previewCarry}"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem><cells>
+                                        <Text text="{preview>GLAccount}"/>
+                                        <Text text="{preview>DebitCredit}"/>
+                                        <ObjectNumber number="{preview>Amount}" unit="{preview>Currency}"/>
+                                        <Text text="{preview>SourceWBS}"/>
+                                        <Text text="{preview>AccountWBS}"/>
+                                        <Text text="{preview>ManagementWBS}"/>
+                                        <Text text="{preview>CarryType}"/>
+                                    </cells></ColumnListItem>
+                                </items>
+                            </Table>
+                            <Table items="{preview>Totals}" visible="{= ${preview>Totals}.length > 0 }">
+                                <columns>
+                                    <Column><Text text="{i18n>previewCurrency}"/></Column>
+                                    <Column hAlign="End"><Text text="{i18n>previewDebit}"/></Column>
+                                    <Column hAlign="End"><Text text="{i18n>previewCredit}"/></Column>
+                                    <Column hAlign="End"><Text text="{i18n>previewDifference}"/></Column>
+                                </columns>
+                                <items><ColumnListItem><cells>
+                                    <Text text="{preview>Currency}"/>
+                                    <ObjectNumber number="{preview>Debit}"/>
+                                    <ObjectNumber number="{preview>Credit}"/>
+                                    <ObjectNumber number="{preview>Difference}" state="{= ${preview>Balanced} ? 'Success' : 'Error' }"/>
+                                </cells></ColumnListItem></items>
+                            </Table>
+                        </VBox>
+                    </items>
+                </VBox>
+            </VBox>
+        </content>
+        <endButton><Button text="{i18n>previewClose}" press=".close"/></endButton>
+    </Dialog>
+</core:FragmentDefinition>
