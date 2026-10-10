@@ -1,0 +1,29 @@
+{
+  "generationParameters": {
+    "generationDate": "Sat Oct 10 2026 03:17:36 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "https://my201604.s4hana.sapcloud.cn/sap/opu/odata4/sap/zui_pc_sim_o4/srvd/sap/zui_pc_sim_o4/0001/",
+    "appName": "project_carryover",
+    "appTitle": "项目（WBS元素）成本结转",
+    "appDescription": "项目（WBS元素）成本结转",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.148.10",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.33.0",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "Runs"
+      }
+    ],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```",
+    "valueHelpDownloaded": true
+  }
+}

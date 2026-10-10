@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "4.0"
+metadata:
+  name: projectcarryover
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: S4H_DEV
+          url: https://my201604.s4hana.sapcloud.cn
+          authenticationType: reentranceTicket # SAML support for vscode
+        app:
+          name: ZFI002
+          description: project_carrover
+          package: ZFI002
+          transport: I86K900348
+        exclude:
+          - /test/
+          - /localService/

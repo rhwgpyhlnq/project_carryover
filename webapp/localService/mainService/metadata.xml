@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="SAP__analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AUTHORIZATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Authorization.V1" Alias="SAP__authorization"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="SAP__communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HIERARCHY',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Hierarchy.v1" Alias="SAP__hierarchy"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="SAP__HTML5"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="SAP__measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ODM',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.ODM.v1" Alias="SAP__ODM"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PDF',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PDF.v1" Alias="SAP__PDF"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="SAP__personalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_SESSION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Session.v1" Alias="SAP__session"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_SUPPORT',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Support.v1" Alias="SAP__support"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="SAP__validation"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="com.sap.gateway.srvd.zui_pc_sim.v0001" Alias="SAP__self">
+            <Annotation Term="SAP__core.SchemaVersion" String="1.0.0"/>
+            <EntityType Name="CompanyCodeVHType">
+                <Key>
+                    <PropertyRef Name="CompanyCode"/>
+                </Key>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="CompanyCodeName" Type="Edm.String" Nullable="false" MaxLength="25"/>
+            </EntityType>
+            <EntityType Name="RunsType">
+                <Key>
+                    <PropertyRef Name="CompanyCode"/>
+                    <PropertyRef Name="FiscalYear"/>
+                    <PropertyRef Name="FiscalPeriod"/>
+                    <PropertyRef Name="Ledger"/>
+                    <PropertyRef Name="WBS"/>
+                    <PropertyRef Name="GLAccount"/>
+                    <PropertyRef Name="Currency"/>
+                </Key>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FiscalYear" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FiscalPeriod" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="Ledger" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="WBS" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="GLAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="TotalAmount" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="variable"/>
+                <Property Name="DebitCreditCode" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="CarryType" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="ReceiverAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="TransferAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="Criticality" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220"/>
+                <Property Name="AccountingDocument" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="PostingDate" Type="Edm.Date"/>
+                <Property Name="__OperationControl" Type="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsOperationControl"/>
+                <Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd.zui_pc_sim.v0001.SAP__Message)" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="CostSummaryType">
+                <Key>
+                    <PropertyRef Name="CompanyCode"/>
+                    <PropertyRef Name="FiscalYear"/>
+                    <PropertyRef Name="FiscalPeriod"/>
+                    <PropertyRef Name="Ledger"/>
+                    <PropertyRef Name="WBS"/>
+                    <PropertyRef Name="GLAccount"/>
+                    <PropertyRef Name="Currency"/>
+                </Key>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FiscalYear" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FiscalPeriod" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="Ledger" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="WBS" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="GLAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="Amount" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="variable"/>
+            </EntityType>
+            <ComplexType Name="RunsOperationControl">
+                <Property Name="OffsetVoucher" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="Posting" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="Simulate" Type="Edm.Boolean" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="ZA_PC_PREVIEWLINE">
+                <Property Name="ItemNo" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="SourceAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="GLAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DebitCredit" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="Amount" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="variable"/>
+                <Property Name="SourceWBS" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="AccountWBS" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="ManagementWBS" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="CarryType" Type="Edm.String" Nullable="false" MaxLength="4"/>
+            </ComplexType>
+            <ComplexType Name="ZA_PC_PREVIEW">
+                <Property Name="WBS" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FiscalYear" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FiscalPeriod" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="Ledger" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220"/>
+                <Property Name="TotalAmount" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="variable"/>
+                <Property Name="DebitTotal" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="variable"/>
+                <Property Name="CreditTotal" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="variable"/>
+                <Property Name="Difference" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="variable"/>
+                <Property Name="LineCount" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="_Lines" Type="Collection(com.sap.gateway.srvd.zui_pc_sim.v0001.ZA_PC_PREVIEWLINE)" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="SAP__Message">
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <Property Name="message" Type="Edm.String" Nullable="false"/>
+                <Property Name="target" Type="Edm.String"/>
+                <Property Name="additionalTargets" Type="Collection(Edm.String)" Nullable="false"/>
+                <Property Name="transition" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="numericSeverity" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="longtextUrl" Type="Edm.String"/>
+            </ComplexType>
+            <Action Name="Posting" EntitySetPath="_it" IsBound="true">
+                <Parameter Name="_it" Type="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType" Nullable="false"/>
+                <Parameter Name="PostingDate" Type="Edm.Date" Nullable="true"/>
+                <Parameter Name="DocumentDate" Type="Edm.Date" Nullable="true"/>
+                <Parameter Name="AccountingDocumentType" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Parameter Name="AccountingDocumentHeaderText" Type="Edm.String" Nullable="false" MaxLength="25"/>
+                <ReturnType Type="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType" Nullable="false"/>
+            </Action>
+            <Action Name="OffsetVoucher" EntitySetPath="_it" IsBound="true">
+                <Parameter Name="_it" Type="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType" Nullable="false"/>
+                <Parameter Name="PostingDate" Type="Edm.Date" Nullable="true"/>
+                <Parameter Name="ReversalReason" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <ReturnType Type="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType" Nullable="false"/>
+            </Action>
+            <Action Name="Simulate" IsBound="true">
+                <Parameter Name="_it" Type="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType" Nullable="false"/>
+                <ReturnType Type="com.sap.gateway.srvd.zui_pc_sim.v0001.ZA_PC_PREVIEW" Nullable="false"/>
+            </Action>
+            <EntityContainer Name="Container">
+                <EntitySet Name="CompanyCodeVH" EntityType="com.sap.gateway.srvd.zui_pc_sim.v0001.CompanyCodeVHType"/>
+                <EntitySet Name="CostSummary" EntityType="com.sap.gateway.srvd.zui_pc_sim.v0001.CostSummaryType"/>
+                <EntitySet Name="Runs" EntityType="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType"/>
+            </EntityContainer>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEWLINE/Currency">
+                <Annotation Term="SAP__common.IsCurrency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEWLINE/Amount">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEW/FiscalYear">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEW/FiscalPeriod">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEW/Currency">
+                <Annotation Term="SAP__common.IsCurrency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEW/TotalAmount">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEW/DebitTotal">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEW/CreditTotal">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZA_PC_PREVIEW/Difference">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CompanyCodeVHType/CompanyCode">
+                <Annotation Term="SAP__common.Text" Path="CompanyCodeName"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="公司代码"/>
+                <Annotation Term="SAP__common.Heading" String="公司"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=BUKRS"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CompanyCodeVHType">
+                <Annotation Term="SAP__common.Label" String="公司代码"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/CompanyCodeVH">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="true"/>
+                        <PropertyValue Property="UnsupportedExpressions" EnumMember="SAP__capabilities.SearchExpressions/AND SAP__capabilities.SearchExpressions/NOT SAP__capabilities.SearchExpressions/group "/>
+                        <PropertyValue Property="SearchSyntax" String="https://url.sap/odata-search"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/CompanyCode">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/i_companycodestdvh/0001;ps='srvd-zui_pc_sim-0001';va='com.sap.gateway.srvd.zui_pc_sim.v0001.et-zi_pc_live.companycode'/$metadata</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Label" String="公司代码"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/FiscalYear">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="会计年度"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/FiscalPeriod">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="会计期间"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FINS_FISCALPERIOD"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Ledger">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="分类账"/>
+                <Annotation Term="SAP__common.Heading" String="账"/>
+                <Annotation Term="SAP__common.QuickInfo" String="总账会计中的分类账"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FINS_LEDGER"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/WBS">
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/GLAccount">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="总账科目"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FIS_RACCT"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Currency">
+                <Annotation Term="SAP__common.IsCurrency"/>
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="公司代码货币"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/TotalAmount">
+                <Annotation Term="SAP__common.Label" String="本位币金额"/>
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/DebitCreditCode">
+                <Annotation Term="SAP__common.Label" String="借贷码"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/CarryType">
+                <Annotation Term="SAP__common.Label" String="结转类型"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/ReceiverAccount">
+                <Annotation Term="SAP__common.Label" String="结算接收方"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/TransferAccount">
+                <Annotation Term="SAP__common.Label" String="转出科目"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Status">
+                <Annotation Term="SAP__common.Label" String="消息标识"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Criticality">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Message">
+                <Annotation Term="SAP__common.Label" String="消息文本"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/AccountingDocument">
+                <Annotation Term="SAP__common.Label" String="过账凭证号"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/PostingDate">
+                <Annotation Term="SAP__common.Label" String="过账日期"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/__OperationControl">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/PostingDate">
+                <Annotation Term="SAP__common.Label" String="过账日期"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/DocumentDate">
+                <Annotation Term="SAP__common.Label" String="凭证日期"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/AccountingDocumentType">
+                <Annotation Term="SAP__common.Label" String="凭证类型"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/AccountingDocumentHeaderText">
+                <Annotation Term="SAP__common.Label" String="凭证抬头文本"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/Posting"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)/PostingDate">
+                <Annotation Term="SAP__common.Label" String="冲销过账日期"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)/ReversalReason">
+                <Annotation Term="SAP__common.Label" String="冲销原因"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/OffsetVoucher"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Simulate(SAP__self.RunsType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/Simulate"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType">
+                <Annotation Term="SAP__common.Label" String="Live project balance checks"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Live balance and checks"/>
+                            <PropertyValue Property="ID" String="General"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.Identification"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Project balance"/>
+                        <PropertyValue Property="TypeNamePlural" String="Live project balances"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="WBS"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="Message"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Identification">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CompanyCode"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalYear"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalPeriod"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Ledger"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="WBS"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="GLAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Currency"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalAmount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CarryType"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ReceiverAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TransferAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Criticality" Path="Criticality"/>
+                            <PropertyValue Property="Value" Path="Status"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Message"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="AccountingDocument"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="PostingDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Posting"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Posting(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Offset voucher（冲销）"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.OffsetVoucher(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Simulate"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Simulate(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CompanyCode"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalYear"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalPeriod"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="WBS"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="GLAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalAmount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="DebitCreditCode"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CarryType"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ReceiverAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TransferAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Criticality" Path="Criticality"/>
+                            <PropertyValue Property="Value" Path="Status"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Message"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="AccountingDocument"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="PostingDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Simulate"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Simulate(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Offset voucher（冲销）"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.OffsetVoucher(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Posting"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Posting(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>CompanyCode</PropertyPath>
+                        <PropertyPath>FiscalYear</PropertyPath>
+                        <PropertyPath>FiscalPeriod</PropertyPath>
+                        <PropertyPath>WBS</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/Runs">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>CompanyCode</PropertyPath>
+                                <PropertyPath>FiscalYear</PropertyPath>
+                                <PropertyPath>FiscalPeriod</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container">
+                <Annotation Term="SAP__CodeList.CurrencyCodes">
+                    <Record>
+                        <PropertyValue Property="Url" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="CollectionPath" String="Currencies"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="SAP__capabilities.FilterFunctions">
+                    <Collection>
+                        <String>eq</String>
+                        <String>ne</String>
+                        <String>gt</String>
+                        <String>ge</String>
+                        <String>lt</String>
+                        <String>le</String>
+                        <String>and</String>
+                        <String>or</String>
+                        <String>contains</String>
+                        <String>startswith</String>
+                        <String>endswith</String>
+                        <String>any</String>
+                        <String>all</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__support.TechnicalInfoLinks">
+                    <Record>
+                        <PropertyValue Property="Url" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="FunctionImport" String="GetTechnicalInfoLinks"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SupportedFormats">
+                    <Collection>
+                        <String>application/json</String>
+                        <String>application/pdf</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__PDF.Features">
+                    <Record>
+                        <PropertyValue Property="DocumentDescriptionReference" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="DocumentDescriptionCollection" String="MyDocumentDescriptions"/>
+                        <PropertyValue Property="ArchiveFormat" Bool="true"/>
+                        <PropertyValue Property="Border" Bool="true"/>
+                        <PropertyValue Property="CoverPage" Bool="true"/>
+                        <PropertyValue Property="FitToPage" Bool="true"/>
+                        <PropertyValue Property="FontName" Bool="true"/>
+                        <PropertyValue Property="FontSize" Bool="true"/>
+                        <PropertyValue Property="HeaderFooter" Bool="true"/>
+                        <PropertyValue Property="IANATimezoneFormat" Bool="true"/>
+                        <PropertyValue Property="Margin" Bool="true"/>
+                        <PropertyValue Property="Padding" Bool="true"/>
+                        <PropertyValue Property="ResultSizeDefault" Int="20000"/>
+                        <PropertyValue Property="ResultSizeMaximum" Int="20000"/>
+                        <PropertyValue Property="Signature" Bool="true"/>
+                        <PropertyValue Property="TextDirectionLayout" Bool="true"/>
+                        <PropertyValue Property="Treeview" Bool="true"/>
+                        <PropertyValue Property="UploadToFileShare" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.BatchSupport">
+                    <Record>
+                        <PropertyValue Property="SupportedFormats">
+                            <Collection>
+                                <String>application/json</String>
+                                <String>multipart/mixed</String>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.KeyAsSegmentSupported"/>
+                <Annotation Term="SAP__capabilities.AsynchronousRequestsSupported"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CostSummaryType/CompanyCode">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="公司代码"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CostSummaryType/FiscalYear">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="会计年度"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CostSummaryType/FiscalPeriod">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="会计期间"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FINS_FISCALPERIOD"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CostSummaryType/Ledger">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="分类账"/>
+                <Annotation Term="SAP__common.Heading" String="账"/>
+                <Annotation Term="SAP__common.QuickInfo" String="总账会计中的分类账"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FINS_LEDGER"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CostSummaryType/GLAccount">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="总账科目"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FIS_RACCT"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CostSummaryType/Currency">
+                <Annotation Term="SAP__common.IsCurrency"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="公司代码货币"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CostSummaryType/Amount">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.CostSummaryType">
+                <Annotation Term="SAP__common.Label" String="Project period balance from FS source"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/CostSummary">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="Amount"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.CompanyCodeVHType/CompanyCodeName">
+                <Annotation Term="SAP__common.Label" String="公司名称"/>
+                <Annotation Term="SAP__common.QuickInfo" String="公司代码或公司的名称"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsOperationControl/OffsetVoucher">
+                <Annotation Term="SAP__common.Label" String="Dyn. Action Control"/>
+                <Annotation Term="SAP__common.Heading" String="Dynamic Action Control"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Dynamic Action Property"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsOperationControl/Posting">
+                <Annotation Term="SAP__common.Label" String="Dyn. Action Control"/>
+                <Annotation Term="SAP__common.Heading" String="Dynamic Action Control"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Dynamic Action Property"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsOperationControl/Simulate">
+                <Annotation Term="SAP__common.Label" String="Dyn. Action Control"/>
+                <Annotation Term="SAP__common.Heading" String="Dynamic Action Control"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Dynamic Action Property"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
