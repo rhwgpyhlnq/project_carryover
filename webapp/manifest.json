@@ -3,9 +3,15 @@
   "sap.app": {
     "id": "projectcarryover",
     "type": "application",
-    "i18n": "i18n/i18n.properties",
+    "i18n": {
+      "bundleUrl": "i18n/i18n.properties",
+      "supportedLocales": [
+        "",
+        "en"
+      ]
+    },
     "applicationVersion": {
-      "version": "0.0.1"
+      "version": "0.0.2"
     },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
@@ -83,7 +89,11 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "projectcarryover.i18n.i18n"
+          "bundleName": "projectcarryover.i18n.i18n",
+          "supportedLocales": [
+            "",
+            "en"
+          ]
         }
       },
       "": {
@@ -97,7 +107,13 @@
       },
       "@i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
-        "uri": "i18n/i18n.properties"
+        "uri": "i18n/i18n.properties",
+        "settings": {
+          "supportedLocales": [
+            "",
+            "en"
+          ]
+        }
       }
     },
     "resources": {
@@ -137,6 +153,13 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "GridTable"
+                  },
+                  "actions": {
+                    "SimulationPreview": {
+                      "text": "{i18n>previewAction}",
+                      "press": "projectcarryover.ext.Simulation.open",
+                      "requiresSelection": true
+                    }
                   }
                 }
               }
@@ -155,7 +178,8 @@
           }
         }
       }
-    }
+    },
+    "flexBundle": false
   },
   "sap.fiori": {
     "registrationIds": [],
