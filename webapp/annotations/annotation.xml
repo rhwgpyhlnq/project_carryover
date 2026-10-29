@@ -72,9 +72,27 @@
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Message" />
                         </Record>
-                        <Record Type="UI.DataField">
+                        <Record Type="UI.DataFieldWithIntentBasedNavigation">
                             <PropertyValue Property="Label" String="过账凭证号" />
                             <PropertyValue Property="Value" Path="AccountingDocument" />
+                            <PropertyValue Property="SemanticObject" String="AccountingDocument" />
+                            <PropertyValue Property="Action" String="manage" />
+                            <PropertyValue Property="Mapping">
+                                <Collection>
+                                    <Record Type="Common.SemanticObjectMappingType">
+                                        <PropertyValue Property="LocalProperty" PropertyPath="CompanyCode" />
+                                        <PropertyValue Property="SemanticObjectProperty" String="CompanyCode" />
+                                    </Record>
+                                    <Record Type="Common.SemanticObjectMappingType">
+                                        <PropertyValue Property="LocalProperty" PropertyPath="FiscalYear" />
+                                        <PropertyValue Property="SemanticObjectProperty" String="FiscalYear" />
+                                    </Record>
+                                    <Record Type="Common.SemanticObjectMappingType">
+                                        <PropertyValue Property="LocalProperty" PropertyPath="AccountingDocument" />
+                                        <PropertyValue Property="SemanticObjectProperty" String="AccountingDocument" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Label" String="过账日期" />
