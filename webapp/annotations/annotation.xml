@@ -43,6 +43,10 @@
                             <PropertyValue Property="Value" Path="GLAccount" />
                         </Record>
                         <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="总账科目描述" />
+                            <PropertyValue Property="Value" Path="GLAccountDescription" />
+                        </Record>
+                        <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="TotalAmount" />
                         </Record>
                         <Record Type="UI.DataField">
@@ -53,6 +57,10 @@
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="ReceiverAccount" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="结算接收方科目描述" />
+                            <PropertyValue Property="Value" Path="ReceiverAccountDescription" />
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="TransferAccount" />
