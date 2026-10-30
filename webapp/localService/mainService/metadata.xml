@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm" Version="4.0">
     <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
         <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/>
     </edmx:Reference>
@@ -64,6 +64,36 @@
                 <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4"/>
                 <Property Name="CompanyCodeName" Type="Edm.String" Nullable="false" MaxLength="25"/>
             </EntityType>
+            <EntityType Name="RunsByWBSType">
+                <Key>
+                    <PropertyRef Name="CompanyCode"/>
+                    <PropertyRef Name="FiscalYear"/>
+                    <PropertyRef Name="FiscalPeriod"/>
+                    <PropertyRef Name="Ledger"/>
+                    <PropertyRef Name="WBS"/>
+                    <PropertyRef Name="GLAccount"/>
+                    <PropertyRef Name="Currency"/>
+                </Key>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FiscalYear" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FiscalPeriod" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="Ledger" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="WBS" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="GLAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="GLAccountDescription" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="TotalAmount" Type="Edm.Decimal" Precision="23" Scale="variable"/>
+                <Property Name="DebitCreditCode" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="CarryType" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="ReceiverAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="ReceiverAccountDescription" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="TransferAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="Criticality" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220"/>
+                <Property Name="AccountingDocument" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="PostingDate" Type="Edm.Date"/>
+            </EntityType>
             <EntityType Name="RunsType">
                 <Key>
                     <PropertyRef Name="CompanyCode"/>
@@ -81,10 +111,12 @@
                 <Property Name="WBS" Type="Edm.String" Nullable="false" MaxLength="24"/>
                 <Property Name="GLAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
                 <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="GLAccountDescription" Type="Edm.String" Nullable="false" MaxLength="50"/>
                 <Property Name="TotalAmount" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="variable"/>
                 <Property Name="DebitCreditCode" Type="Edm.String" Nullable="false" MaxLength="1"/>
                 <Property Name="CarryType" Type="Edm.String" Nullable="false" MaxLength="4"/>
                 <Property Name="ReceiverAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="ReceiverAccountDescription" Type="Edm.String" Nullable="false" MaxLength="50"/>
                 <Property Name="TransferAccount" Type="Edm.String" Nullable="false" MaxLength="10"/>
                 <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1"/>
                 <Property Name="Criticality" Type="Edm.Byte" Nullable="false"/>
@@ -177,6 +209,7 @@
                 <EntitySet Name="CompanyCodeVH" EntityType="com.sap.gateway.srvd.zui_pc_sim.v0001.CompanyCodeVHType"/>
                 <EntitySet Name="CostSummary" EntityType="com.sap.gateway.srvd.zui_pc_sim.v0001.CostSummaryType"/>
                 <EntitySet Name="Runs" EntityType="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType"/>
+                <EntitySet Name="RunsByWBS" EntityType="com.sap.gateway.srvd.zui_pc_sim.v0001.RunsByWBSType"/>
             </EntityContainer>
             <Annotations Target="SAP__self.ZA_PC_PREVIEWLINE/Currency">
                 <Annotation Term="SAP__common.IsCurrency"/>
@@ -244,152 +277,136 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="SAP__self.RunsType/CompanyCode">
-                <Annotation Term="SAP__core.Computed"/>
+            <Annotations Target="SAP__self.RunsByWBSType/CompanyCode">
                 <Annotation Term="SAP__common.IsUpperCase"/>
                 <Annotation Term="SAP__common.ValueListReferences">
                     <Collection>
-                        <String>../../../../srvd_f4/sap/i_companycodestdvh/0001;ps='srvd-zui_pc_sim-0001';va='com.sap.gateway.srvd.zui_pc_sim.v0001.et-zi_pc_live.companycode'/$metadata</String>
+                        <String>../../../../srvd_f4/sap/i_companycodestdvh/0001;ps='srvd-zui_pc_sim-0001';va='com.sap.gateway.srvd.zui_pc_sim.v0001.et-zc_pc_wbs_ana.companycode'/$metadata</String>
                     </Collection>
                 </Annotation>
                 <Annotation Term="SAP__common.Label" String="公司代码"/>
             </Annotations>
-            <Annotations Target="SAP__self.RunsType/FiscalYear">
-                <Annotation Term="SAP__core.Computed"/>
+            <Annotations Target="SAP__self.RunsByWBSType/FiscalYear">
                 <Annotation Term="SAP__common.IsDigitSequence"/>
                 <Annotation Term="SAP__common.Label" String="会计年度"/>
             </Annotations>
-            <Annotations Target="SAP__self.RunsType/FiscalPeriod">
-                <Annotation Term="SAP__core.Computed"/>
+            <Annotations Target="SAP__self.RunsByWBSType/FiscalPeriod">
                 <Annotation Term="SAP__common.IsDigitSequence"/>
                 <Annotation Term="SAP__common.Label" String="会计期间"/>
                 <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FINS_FISCALPERIOD"/>
             </Annotations>
-            <Annotations Target="SAP__self.RunsType/Ledger">
-                <Annotation Term="SAP__core.Computed"/>
+            <Annotations Target="SAP__self.RunsByWBSType/Ledger">
                 <Annotation Term="SAP__common.IsUpperCase"/>
                 <Annotation Term="SAP__common.Label" String="分类账"/>
                 <Annotation Term="SAP__common.Heading" String="账"/>
                 <Annotation Term="SAP__common.QuickInfo" String="总账会计中的分类账"/>
                 <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FINS_LEDGER"/>
             </Annotations>
-            <Annotations Target="SAP__self.RunsType/WBS">
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/GLAccount">
-                <Annotation Term="SAP__core.Computed"/>
+            <Annotations Target="SAP__self.RunsByWBSType/GLAccount">
                 <Annotation Term="SAP__common.IsUpperCase"/>
                 <Annotation Term="SAP__common.Label" String="总账科目"/>
                 <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FIS_RACCT"/>
             </Annotations>
-            <Annotations Target="SAP__self.RunsType/Currency">
+            <Annotations Target="SAP__self.RunsByWBSType/Currency">
                 <Annotation Term="SAP__common.IsCurrency"/>
-                <Annotation Term="SAP__core.Computed"/>
                 <Annotation Term="SAP__common.IsUpperCase"/>
                 <Annotation Term="SAP__common.Label" String="公司代码货币"/>
             </Annotations>
-            <Annotations Target="SAP__self.RunsType/TotalAmount">
+            <Annotations Target="SAP__self.RunsByWBSType/GLAccountDescription">
+                <Annotation Term="SAP__common.Label" String="总账科目描述"/>
+                <Annotation Term="SAP__common.Heading" String="总账科目长名称"/>
+                <Annotation Term="SAP__common.QuickInfo" String="总账科目长名称"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/TotalAmount">
                 <Annotation Term="SAP__common.Label" String="本位币金额"/>
-                <Annotation Term="SAP__core.Computed"/>
                 <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/DebitCreditCode">
-                <Annotation Term="SAP__common.Label" String="借贷码"/>
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/CarryType">
-                <Annotation Term="SAP__common.Label" String="结转类型"/>
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/ReceiverAccount">
-                <Annotation Term="SAP__common.Label" String="结算接收方"/>
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/TransferAccount">
-                <Annotation Term="SAP__common.Label" String="转出科目"/>
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/Status">
-                <Annotation Term="SAP__common.Label" String="消息标识"/>
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/Criticality">
-                <Annotation Term="SAP__core.Computed"/>
-                <Annotation Term="SAP__UI.Hidden"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/Message">
-                <Annotation Term="SAP__common.Label" String="消息文本"/>
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/AccountingDocument">
-                <Annotation Term="SAP__common.Label" String="过账凭证号"/>
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/PostingDate">
-                <Annotation Term="SAP__common.Label" String="过账日期"/>
-                <Annotation Term="SAP__core.Computed"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType/__OperationControl">
-                <Annotation Term="SAP__core.Computed"/>
-                <Annotation Term="SAP__UI.HiddenFilter"/>
-                <Annotation Term="SAP__UI.Hidden"/>
-            </Annotations>
-            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/PostingDate">
-                <Annotation Term="SAP__common.Label" String="过账日期"/>
-            </Annotations>
-            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/DocumentDate">
-                <Annotation Term="SAP__common.Label" String="凭证日期"/>
-            </Annotations>
-            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/AccountingDocumentType">
-                <Annotation Term="SAP__common.Label" String="凭证类型"/>
-            </Annotations>
-            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/AccountingDocumentHeaderText">
-                <Annotation Term="SAP__common.Label" String="凭证抬头文本"/>
-            </Annotations>
-            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)">
-                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/Posting"/>
-            </Annotations>
-            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)/PostingDate">
-                <Annotation Term="SAP__common.Label" String="冲销过账日期"/>
-            </Annotations>
-            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)/ReversalReason">
-                <Annotation Term="SAP__common.Label" String="冲销原因"/>
-                <Annotation Term="SAP__UI.Hidden"/>
-            </Annotations>
-            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)">
-                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/OffsetVoucher"/>
-            </Annotations>
-            <Annotations Target="SAP__self.Simulate(SAP__self.RunsType)">
-                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/Simulate"/>
-            </Annotations>
-            <Annotations Target="SAP__self.RunsType">
-                <Annotation Term="SAP__common.Label" String="Live project balance checks"/>
-                <Annotation Term="SAP__UI.Facets">
+                <Annotation Term="SAP__aggregation.ContextDefiningProperties">
                     <Collection>
-                        <Record Type="SAP__UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="Live balance and checks"/>
-                            <PropertyValue Property="ID" String="General"/>
-                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.Identification"/>
-                        </Record>
+                        <PropertyPath>Currency</PropertyPath>
                     </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/DebitCreditCode">
+                <Annotation Term="SAP__common.Label" String="借贷码"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/CarryType">
+                <Annotation Term="SAP__common.Label" String="结转类型"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/ReceiverAccount">
+                <Annotation Term="SAP__common.Label" String="结算接收方"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/ReceiverAccountDescription">
+                <Annotation Term="SAP__common.Label" String="结算接收方科目描述"/>
+                <Annotation Term="SAP__common.Heading" String="总账科目长名称"/>
+                <Annotation Term="SAP__common.QuickInfo" String="总账科目长名称"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/TransferAccount">
+                <Annotation Term="SAP__common.Label" String="转出科目"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/Status">
+                <Annotation Term="SAP__common.Label" String="消息标识"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/Message">
+                <Annotation Term="SAP__common.Label" String="消息文本"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/AccountingDocument">
+                <Annotation Term="SAP__common.Label" String="过账凭证号"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/PostingDate">
+                <Annotation Term="SAP__common.Label" String="过账日期"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType">
+                <Annotation Term="SAP__common.Label" String="项目余额 WBS 分组小计"/>
+                <Annotation Term="SAP__aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>filter</String>
+                                <String>identity</String>
+                                <String>orderby</String>
+                                <String>skip</String>
+                                <String>top</String>
+                                <String>groupby</String>
+                                <String>aggregate</String>
+                                <String>concat</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="GroupableProperties">
+                            <Collection>
+                                <PropertyPath>AccountingDocument</PropertyPath>
+                                <PropertyPath>CarryType</PropertyPath>
+                                <PropertyPath>CompanyCode</PropertyPath>
+                                <PropertyPath>Criticality</PropertyPath>
+                                <PropertyPath>Currency</PropertyPath>
+                                <PropertyPath>DebitCreditCode</PropertyPath>
+                                <PropertyPath>FiscalPeriod</PropertyPath>
+                                <PropertyPath>FiscalYear</PropertyPath>
+                                <PropertyPath>GLAccount</PropertyPath>
+                                <PropertyPath>GLAccountDescription</PropertyPath>
+                                <PropertyPath>Ledger</PropertyPath>
+                                <PropertyPath>Message</PropertyPath>
+                                <PropertyPath>PostingDate</PropertyPath>
+                                <PropertyPath>ReceiverAccount</PropertyPath>
+                                <PropertyPath>ReceiverAccountDescription</PropertyPath>
+                                <PropertyPath>Status</PropertyPath>
+                                <PropertyPath>TransferAccount</PropertyPath>
+                                <PropertyPath>WBS</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
                 </Annotation>
                 <Annotation Term="SAP__UI.HeaderInfo">
                     <Record>
-                        <PropertyValue Property="TypeName" String="Project balance"/>
-                        <PropertyValue Property="TypeNamePlural" String="Live project balances"/>
+                        <PropertyValue Property="TypeName" String="项目余额"/>
+                        <PropertyValue Property="TypeNamePlural" String="项目余额与 WBS 小计"/>
                         <PropertyValue Property="Title">
                             <Record Type="SAP__UI.DataField">
                                 <PropertyValue Property="Value" Path="WBS"/>
                             </Record>
                         </PropertyValue>
-                        <PropertyValue Property="Description">
-                            <Record Type="SAP__UI.DataField">
-                                <PropertyValue Property="Value" Path="Message"/>
-                            </Record>
-                        </PropertyValue>
                     </Record>
                 </Annotation>
-                <Annotation Term="SAP__UI.Identification">
+                <Annotation Term="SAP__UI.LineItem">
                     <Collection>
                         <Record Type="SAP__UI.DataField">
                             <PropertyValue Property="Value" Path="CompanyCode"/>
@@ -410,69 +427,13 @@
                             <PropertyValue Property="Value" Path="GLAccount"/>
                         </Record>
                         <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="GLAccountDescription"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalAmount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
                             <PropertyValue Property="Value" Path="Currency"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="TotalAmount"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="CarryType"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="ReceiverAccount"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="TransferAccount"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Criticality" Path="Criticality"/>
-                            <PropertyValue Property="Value" Path="Status"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="Message"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="AccountingDocument"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="PostingDate"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Posting"/>
-                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Posting(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
-                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Offset voucher（冲销）"/>
-                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.OffsetVoucher(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
-                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Simulate"/>
-                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Simulate(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
-                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="SAP__UI.LineItem">
-                    <Collection>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="CompanyCode"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="FiscalYear"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="FiscalPeriod"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="WBS"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="GLAccount"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Value" Path="TotalAmount"/>
                         </Record>
                         <Record Type="SAP__UI.DataField">
                             <PropertyValue Property="Value" Path="DebitCreditCode"/>
@@ -484,6 +445,9 @@
                             <PropertyValue Property="Value" Path="ReceiverAccount"/>
                         </Record>
                         <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ReceiverAccountDescription"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
                             <PropertyValue Property="Value" Path="TransferAccount"/>
                         </Record>
                         <Record Type="SAP__UI.DataField">
@@ -499,21 +463,6 @@
                         <Record Type="SAP__UI.DataField">
                             <PropertyValue Property="Value" Path="PostingDate"/>
                         </Record>
-                        <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Simulate"/>
-                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Simulate(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
-                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Offset voucher（冲销）"/>
-                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.OffsetVoucher(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
-                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Posting"/>
-                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Posting(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
-                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
-                        </Record>
                     </Collection>
                 </Annotation>
                 <Annotation Term="SAP__UI.SelectionFields">
@@ -524,9 +473,10 @@
                         <PropertyPath>WBS</PropertyPath>
                     </Collection>
                 </Annotation>
-                <Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
+                <Annotation Term="SAP__aggregation.CustomAggregate" Qualifier="Currency" String="Edm.String"/>
+                <Annotation Term="SAP__aggregation.CustomAggregate" Qualifier="TotalAmount" String="Edm.Decimal"/>
             </Annotations>
-            <Annotations Target="SAP__self.Container/Runs">
+            <Annotations Target="SAP__self.Container/RunsByWBS">
                 <Annotation Term="SAP__capabilities.SearchRestrictions">
                     <Record>
                         <PropertyValue Property="Searchable" Bool="false"/>
@@ -539,20 +489,6 @@
                                 <PropertyPath>CompanyCode</PropertyPath>
                                 <PropertyPath>FiscalYear</PropertyPath>
                                 <PropertyPath>FiscalPeriod</PropertyPath>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="NonFilterableProperties">
-                            <Collection>
-                                <PropertyPath>__OperationControl</PropertyPath>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-                <Annotation Term="SAP__capabilities.SortRestrictions">
-                    <Record>
-                        <PropertyValue Property="NonSortableProperties">
-                            <Collection>
-                                <PropertyPath>__OperationControl</PropertyPath>
                             </Collection>
                         </PropertyValue>
                     </Record>
@@ -650,6 +586,362 @@
                 <Annotation Term="SAP__capabilities.KeyAsSegmentSupported"/>
                 <Annotation Term="SAP__capabilities.AsynchronousRequestsSupported"/>
             </Annotations>
+            <Annotations Target="SAP__self.RunsType/CompanyCode">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/i_companycodestdvh/0001;ps='srvd-zui_pc_sim-0001';va='com.sap.gateway.srvd.zui_pc_sim.v0001.et-zi_pc_live.companycode'/$metadata</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Label" String="公司代码"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/FiscalYear">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="会计年度"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/FiscalPeriod">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="会计期间"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FINS_FISCALPERIOD"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Ledger">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="分类账"/>
+                <Annotation Term="SAP__common.Heading" String="账"/>
+                <Annotation Term="SAP__common.QuickInfo" String="总账会计中的分类账"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FINS_LEDGER"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/WBS">
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/GLAccount">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="总账科目"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FIS_RACCT"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Currency">
+                <Annotation Term="SAP__common.IsCurrency"/>
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="公司代码货币"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/GLAccountDescription">
+                <Annotation Term="SAP__common.Label" String="总账科目描述"/>
+                <Annotation Term="SAP__common.Heading" String="总账科目长名称"/>
+                <Annotation Term="SAP__common.QuickInfo" String="总账科目长名称"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/TotalAmount">
+                <Annotation Term="SAP__common.Label" String="本位币金额"/>
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/DebitCreditCode">
+                <Annotation Term="SAP__common.Label" String="借贷码"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/CarryType">
+                <Annotation Term="SAP__common.Label" String="结转类型"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/ReceiverAccount">
+                <Annotation Term="SAP__common.Label" String="结算接收方"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/ReceiverAccountDescription">
+                <Annotation Term="SAP__common.Label" String="结算接收方科目描述"/>
+                <Annotation Term="SAP__common.Heading" String="总账科目长名称"/>
+                <Annotation Term="SAP__common.QuickInfo" String="总账科目长名称"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/TransferAccount">
+                <Annotation Term="SAP__common.Label" String="转出科目"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Status">
+                <Annotation Term="SAP__common.Label" String="消息标识"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Criticality">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/Message">
+                <Annotation Term="SAP__common.Label" String="消息文本"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/AccountingDocument">
+                <Annotation Term="SAP__common.Label" String="过账凭证号"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/PostingDate">
+                <Annotation Term="SAP__common.Label" String="过账日期"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType/__OperationControl">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/PostingDate">
+                <Annotation Term="SAP__common.Label" String="过账日期"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/DocumentDate">
+                <Annotation Term="SAP__common.Label" String="凭证日期"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/AccountingDocumentType">
+                <Annotation Term="SAP__common.Label" String="凭证类型"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)/AccountingDocumentHeaderText">
+                <Annotation Term="SAP__common.Label" String="凭证抬头文本"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Posting(SAP__self.RunsType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/Posting"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)/PostingDate">
+                <Annotation Term="SAP__common.Label" String="冲销过账日期"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)/ReversalReason">
+                <Annotation Term="SAP__common.Label" String="冲销原因"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OffsetVoucher(SAP__self.RunsType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/OffsetVoucher"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Simulate(SAP__self.RunsType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/Simulate"/>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsType">
+                <Annotation Term="SAP__common.Label" String="项目结转实时余额配置检查及过账状态"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Live balance and checks"/>
+                            <PropertyValue Property="ID" String="General"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.Identification"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Project balance"/>
+                        <PropertyValue Property="TypeNamePlural" String="Live project balances"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="WBS"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="Message"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Identification">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CompanyCode"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalYear"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalPeriod"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Ledger"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="WBS"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="GLAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="GLAccountDescription"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Currency"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalAmount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CarryType"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ReceiverAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ReceiverAccountDescription"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TransferAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Criticality" Path="Criticality"/>
+                            <PropertyValue Property="Value" Path="Status"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Message"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="AccountingDocument"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="PostingDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Posting"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Posting(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Offset voucher（冲销）"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.OffsetVoucher(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Simulate"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Simulate(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CompanyCode"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalYear"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FiscalPeriod"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="WBS"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="GLAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="GLAccountDescription"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TotalAmount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="DebitCreditCode"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CarryType"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ReceiverAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ReceiverAccountDescription"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="TransferAccount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Criticality" Path="Criticality"/>
+                            <PropertyValue Property="Value" Path="Status"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Message"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="AccountingDocument"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="PostingDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Simulate"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Simulate(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Offset voucher（冲销）"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.OffsetVoucher(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Posting"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_pc_sim.v0001.Posting(com.sap.gateway.srvd.zui_pc_sim.v0001.RunsType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>CompanyCode</PropertyPath>
+                        <PropertyPath>FiscalYear</PropertyPath>
+                        <PropertyPath>FiscalPeriod</PropertyPath>
+                        <PropertyPath>WBS</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/Runs">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>CompanyCode</PropertyPath>
+                                <PropertyPath>FiscalYear</PropertyPath>
+                                <PropertyPath>FiscalPeriod</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
             <Annotations Target="SAP__self.CostSummaryType/CompanyCode">
                 <Annotation Term="SAP__common.IsUpperCase"/>
                 <Annotation Term="SAP__common.Label" String="公司代码"/>
@@ -684,7 +976,7 @@
                 <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
             </Annotations>
             <Annotations Target="SAP__self.CostSummaryType">
-                <Annotation Term="SAP__common.Label" String="Project period balance from FS source"/>
+                <Annotation Term="SAP__common.Label" String="项目WBS科目余额按公司及期间汇总"/>
             </Annotations>
             <Annotations Target="SAP__self.Container/CostSummary">
                 <Annotation Term="SAP__capabilities.SearchRestrictions">
@@ -724,6 +1016,9 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.RunsByWBSType/Criticality">
+                <Annotation Term="SAP__UI.Hidden"/>
             </Annotations>
             <Annotations Target="SAP__self.CompanyCodeVHType/CompanyCodeName">
                 <Annotation Term="SAP__common.Label" String="公司名称"/>

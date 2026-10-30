@@ -140,29 +140,37 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Runs",
+              "contextPath": "/RunsByWBS",
               "variantManagement": "Page",
-              "navigation": {
-                "Runs": {
-                  "detail": {
-                    "route": "RunsObjectPage"
-                  }
-                }
-              },
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
-                    "type": "GridTable"
+                    "type": "AnalyticalTable",
+                    "aggregationOnLeafLevel": false
                   },
                   "actions": {
+                    "PostingVoucher": {
+                      "text": "{i18n>wbsPosting}",
+                      "press": "projectcarryover.ext.WbsActions.post",
+                      "requiresSelection": true,
+                      "enabled": "projectcarryover.ext.WbsActions.canRun"
+                    },
+                    "OffsetVoucher": {
+                      "text": "{i18n>wbsOffset}",
+                      "press": "projectcarryover.ext.WbsActions.offset",
+                      "requiresSelection": true,
+                      "enabled": "projectcarryover.ext.WbsActions.canRun"
+                    },
                     "SimulationPreview": {
                       "text": "{i18n>previewAction}",
-                      "press": "projectcarryover.ext.Simulation.open",
-                      "requiresSelection": true
+                      "press": "projectcarryover.ext.WbsActions.simulate",
+                      "requiresSelection": true,
+                      "enabled": "projectcarryover.ext.WbsActions.canRun"
                     }
                   }
                 }
-              }
+              },
+              "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#WBSSubtotals"
             }
           }
         },

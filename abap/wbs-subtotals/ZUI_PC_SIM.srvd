@@ -1,0 +1,7 @@
+@EndUserText.label: 'Live project costs and transient preview'
+define service ZUI_PC_SIM {
+  expose ZI_PC_LIVE as Runs;
+  expose I_CompanyCodeStdVH as CompanyCodeVH;
+  expose ZI_PC_COSTSUM as CostSummary;
+  expose ZC_PC_WBS_ANA as RunsByWBS;
+}

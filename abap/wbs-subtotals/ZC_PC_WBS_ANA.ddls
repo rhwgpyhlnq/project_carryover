@@ -1,0 +1,70 @@
+// Read-only analytical projection. Posting actions remain on ZI_PC_LIVE / Runs.
+@EndUserText.label: '项目余额 WBS 分组小计'
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@Metadata.ignorePropagatedAnnotations: true
+@OData.applySupportedForAggregation: #FULL
+@UI.headerInfo: { typeName: '项目余额', typeNamePlural: '项目余额与 WBS 小计', title: { value: 'WBS' } }
+define root view entity ZC_PC_WBS_ANA
+  provider contract transactional_query
+  as projection on ZI_PC_LIVE
+{
+  @UI.lineItem: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  @Consumption.filter.mandatory: true
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'I_CompanyCodeStdVH', element: 'CompanyCode' } }]
+  key CompanyCode,
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  @Consumption.filter.mandatory: true
+  key FiscalYear,
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  @Consumption.filter.mandatory: true
+  key FiscalPeriod,
+  @UI.lineItem: [{ position: 35 }]
+  key Ledger,
+  @UI.lineItem: [{ position: 40 }]
+  @UI.selectionField: [{ position: 40 }]
+  key WBS,
+  @UI.lineItem: [{ position: 50 }]
+  key GLAccount,
+  @UI.lineItem: [{ position: 65 }]
+  key Currency,
+  @EndUserText.label: '总账科目描述'
+  @UI.lineItem: [{ position: 55 }]
+  GLAccountDescription,
+  @EndUserText.label: '本位币金额'
+  @UI.lineItem: [{ position: 60 }]
+  @Aggregation.default: #SUM
+  @Semantics.amount.currencyCode: 'Currency'
+  TotalAmount,
+  @EndUserText.label: '借贷码'
+  @UI.lineItem: [{ position: 70 }]
+  DebitCreditCode,
+  @EndUserText.label: '结转类型'
+  @UI.lineItem: [{ position: 80 }]
+  CarryType,
+  @EndUserText.label: '结算接收方'
+  @UI.lineItem: [{ position: 90 }]
+  ReceiverAccount,
+  @EndUserText.label: '结算接收方科目描述'
+  @UI.lineItem: [{ position: 95 }]
+  ReceiverAccountDescription,
+  @EndUserText.label: '转出科目'
+  @UI.lineItem: [{ position: 100 }]
+  TransferAccount,
+  @EndUserText.label: '消息标识'
+  @UI.lineItem: [{ position: 110, criticality: 'Criticality' }]
+  Status,
+  @UI.hidden: true
+  Criticality,
+  @EndUserText.label: '消息文本'
+  @UI.lineItem: [{ position: 120 }]
+  Message,
+  @EndUserText.label: '过账凭证号'
+  @UI.lineItem: [{ position: 130 }]
+  AccountingDocument,
+  @EndUserText.label: '过账日期'
+  @UI.lineItem: [{ position: 140 }]
+  PostingDate
+}
