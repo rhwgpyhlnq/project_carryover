@@ -1,21 +1,15 @@
 /* global Promise */
 sap.ui.define([
-    "sap/m/MessageBox", "projectcarryover/ext/Simulation"
-], function (MessageBox, Simulation) {
+    "sap/m/MessageBox", "projectcarryover/ext/Simulation",
+    "projectcarryover/ext/WbsSelection", "projectcarryover/ext/WbsGroupData"
+], function (MessageBox, Simulation, WbsSelection, WbsGroupData) {
     "use strict";
 
     const keys = ["CompanyCode", "FiscalYear", "FiscalPeriod", "Ledger", "WBS", "GLAccount", "Currency"];
     const actionNamespace = "com.sap.gateway.srvd.zui_pc_sim.v0001.";
     const pending = new WeakSet();
 
-    function isDetail(context) {
-        if (!context || typeof context.getObject !== "function") { return false; }
-        const row = context.getObject();
-        if (!row || row["@$ui5.node.isTotal"] === true ||
-            row["@$ui5.node.isExpanded"] !== undefined ||
-            (typeof context.isExpanded === "function" && context.isExpanded() !== undefined)) { return false; }
-        return keys.every(function (key) { return typeof row[key] === "string" && row[key].length > 0; });
-    }
+    const isDetail = WbsSelection.isDetail;
 
     function canRun(bindingContext, selectedContexts) {
         return Array.isArray(selectedContexts) && selectedContexts.length > 0 && selectedContexts.every(isDetail);
@@ -39,7 +33,12 @@ sap.ui.define([
                 return;
             }
             const model = api.getModel();
-            const paths = Array.from(new Set(selectedContexts.map(function (context) { return detailPath(context.getObject()); })));
+            const details = await WbsGroupData.read(model, selectedContexts);
+            if (!details.length) {
+                MessageBox.information(bundle.getText("wbsSelectionEmpty"));
+                return;
+            }
+            const paths = Array.from(new Set(details.map(detailPath)));
             for (const path of paths) {
                 bindings.push(model.bindContext(path, undefined, { $$groupId: "$direct" }));
             }

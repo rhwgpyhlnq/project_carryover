@@ -3,8 +3,12 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const row = { CompanyCode: '6842', FiscalYear: '2026', FiscalPeriod: '010', Ledger: '0L', WBS: "WBS/A'1", GLAccount: '824010101', Currency: 'CNY' };
-function setup(eligible = true) {
+function setup(eligible = true, read = async (_, contexts) => contexts.map((context) => context.getObject())) {
     const seen = { paths: [], destroyed: 0, invoked: [], simulated: [], messages: [], refreshed: 0 };
+    let selection;
+    vm.runInNewContext(fs.readFileSync('webapp/ext/WbsSelection.js', 'utf8'), {
+        sap: { ui: { define: (_, factory) => { selection = factory(); } } }
+    });
     let module;
     const model = { bindContext(path) {
         seen.paths.push(path);
@@ -17,7 +21,8 @@ function setup(eligible = true) {
     const messageBox = { information: (m) => seen.messages.push(m), error: (m) => seen.messages.push(m) };
     const simulation = { open: async function (_, contexts) { seen.simulated.push({ api: this, contexts }); } };
     vm.runInNewContext(fs.readFileSync('webapp/ext/WbsActions.js', 'utf8'), {
-        sap: { ui: { define: (_, factory) => { module = factory(messageBox, simulation); } } }
+        sap: { ui: { define: (_, factory) => { module = factory(messageBox, simulation, selection,
+            { read }); } } }
     });
     return { module, api, seen };
 }
@@ -68,4 +73,25 @@ test('suppresses concurrent duplicate postings and allows a later new invocation
     assert.equal(seen.invoked.length, 1);
     await module.post.call(api, undefined, [detail()]);
     assert.equal(seen.invoked.length, 2);
+});
+
+test('prepares hidden same-group accounts returned by the complete-group reader', async () => {
+    const { module, api, seen } = setup(true, async () => [row, { ...row, GLAccount: '999' }, row]);
+    await module.post.call(api, undefined, [detail()]);
+    assert.equal(seen.paths.length, 2);
+    assert.equal(seen.invoked[0].options.contexts.length, 2);
+});
+
+test('a failed complete-group read submits no financial action or simulation and unlocks retry', async () => {
+    let calls = 0;
+    const { module, api, seen } = setup(true, async () => {
+        if (++calls === 1) throw new Error('Read failed');
+        return [row];
+    });
+    await module.post.call(api, undefined, [detail()]);
+    assert.equal(seen.invoked.length, 0);
+    assert.equal(seen.paths.length, 0);
+    assert.equal(seen.messages[0], 'Read failed');
+    await module.post.call(api, undefined, [detail()]);
+    assert.equal(seen.invoked.length, 1);
 });
